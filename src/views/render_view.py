@@ -6,10 +6,15 @@ import numpy as np
 import torch
 from PIL import Image
 from pytorch3d.io import load_objs_as_meshes
-from pytorch3d.renderer import (FoVPerspectiveCameras, MeshRasterizer,
-                                MeshRenderer, PointLights,
-                                RasterizationSettings, SoftPhongShader,
-                                look_at_view_transform)
+from pytorch3d.renderer import (
+    FoVPerspectiveCameras,
+    MeshRasterizer,
+    MeshRenderer,
+    PointLights,
+    RasterizationSettings,
+    SoftPhongShader,
+    look_at_view_transform,
+)
 from pytorch3d.structures import Meshes
 
 

@@ -11,5 +11,5 @@ if __name__ == "__main__":
     }
 
     mesh_texture_render = MeshTextureRender("models/water/water.obj", **configs)
-    #mesh_texture_render.view_3d_model()
-    mesh_texture_render.render_360_views(num_views=10,  output_prefix="water")
+    # mesh_texture_render.view_3d_model()
+    mesh_texture_render.render_360_views(num_views=10, output_prefix="water")

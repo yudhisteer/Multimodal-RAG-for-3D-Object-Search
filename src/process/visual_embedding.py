@@ -48,22 +48,26 @@ class ImageEmbeddingGenerator:
     ) -> None:
         # Create directory if it doesn't exist
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
-        
-        serializable_embeddings = {k: v.tolist() for k, v in embeddings.items()}
 
-        with open(save_path, "w") as f:
-            json.dump(serializable_embeddings, f)
-        print(f"Embeddings saved to {save_path}")
+        try:
+            serializable_embeddings = {k: v.tolist() for k, v in embeddings.items()}
+            with open(save_path, "w") as f:
+                json.dump(serializable_embeddings, f)
+            print(f"Embeddings saved to {save_path}")
+        except Exception as e:
+            print(f"Error saving embeddings: {str(e)}")
 
     def load_embeddings(self, load_path: str) -> Dict[str, np.ndarray]:
         with open(load_path, "r") as f:
             data = json.load(f)
 
         embeddings = {k: np.array(v) for k, v in data.items()}
-        
+
         # Print size and other details of the loaded embeddings
         for filename, array in embeddings.items():
-            print(f"Loaded embedding for {filename}: shape = {array.shape}, dtype = {array.dtype}")
+            print(
+                f"Loaded embedding for {filename}: shape = {array.shape}, dtype = {array.dtype}"
+            )
 
         return embeddings
 
