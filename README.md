@@ -1,4 +1,4 @@
-# Multimodal-RAG-for-3D-Object-Search
+# RAG3D
 
 ## Requirements
 winget install Python.Python.3.9
