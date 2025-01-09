@@ -123,14 +123,14 @@ if __name__ == "__main__":
 
     # Usage
     configs = {
-        "dist": 3.8,
+        "dist": 4.3,
         "elev": 30,
         "azim": 180,
-        "fov": 5,
+        "fov": 4,
         "image_size": 512,
-        "y_offset": -0.1,
+        "y_offset": 0.0,
     }
 
-    # mesh_texture_render = MeshTextureRender("models/basket/basket.obj", **configs)
+    mesh_texture_render = MeshTextureRender("models/basket/basket.obj", **configs)
     # mesh_texture_render.view_3d_model()
-    # mesh_texture_render.render_360_views(num_views=10,  output_prefix="basket")
+    mesh_texture_render.render_360_views(num_views=10, output_prefix="basket")

@@ -1,44 +1,44 @@
 {
     "item": {
-        "type": "Watering Can",
-        "description": "Vintage-style metal watering can.",
-        "color": "Green with yellow handle and lever.",
-        "material": "Metal",
-        "handle": {
-            "type": "Lever and chain",
-            "lever_function": "Water flow control",
-            "lock_mechanism": "Present on front of can"
+        "type": "watering can",
+        "color": {
+            "primary": "yellow",
+            "secondary": "green"
         },
-        "condition": {
-            "state": "Fair",
-            "wear": "Significant",
-            "damage": "Minimal",
-            "potential_repairs": "Polishing, resealing, possible replacement parts"
+        "condition": "good",
+        "functionality": "presumably still functional based on appearance",
+        "handles": {
+            "material": "metal",
+            "style": "simple, lever-type handle on top of the can"
+        },
+        "spout": {
+            "location": "bottom of the watering can"
+        },
+        "style": "vintage",
+        "parts": {
+            "handle": {
+                "type": "piston",
+                "material": "steel"
+            },
+            "valve": {
+                "type": "rotary",
+                "material": "brass",
+                "condition": "tarnished",
+                "functionality": "not fully functional"
+            }
         }
     },
+    "type": "image",
     "metadata": {
-        "item_type": "Tea Kettle",
-        "brand": "Antique",
-        "age": "50 years old",
-        "material": "Metal",
-        "style": "Antique",
-        "condition": "Rusty"
+        "description": {
+            "primary_object": "An old-fashioned green metal watering can with a handle, standing on a rusty base.",
+            "background": "A plain white background."
+        }
     },
-    "condition_details": {
-        "color": "Green and yellow",
-        "rust": "Around 50 years old"
-    },
-    "availability": {
-        "quantity": "1",
-        "location": "Available online or in-store antique shops"
-    },
-    "price_range": {
-        "min": "$100",
-        "max": "$250"
-    },
+    "sku": "W6C74HV0",
     "image_paths": [
-        "output/water/water_009.png",
-        "output/water/water_006.png",
-        "output/water/water_010.png"
+        "output/water/water_008.png",
+        "output/water/water_003.png",
+        "output/water/water_009.png"
     ]
 }

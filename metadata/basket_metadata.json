@@ -1,0 +1,54 @@
+{
+    "metadata": {
+        "item": {
+            "type": "Basket",
+            "material": {
+                "type": "Wicker",
+                "color": "Light Brown"
+            },
+            "size": "Small",
+            "shape": "Round",
+            "appearance": {
+                "type": "Natural",
+                "texture": "Coarse"
+            },
+            "function": {
+                "primary": "Decorative",
+                "secondary": "Potential for storage"
+            }
+        }
+    },
+    "item": {
+        "type": "bowl",
+        "size": "small",
+        "shape": "oval",
+        "material": "wicker",
+        "color": "natural",
+        "design": "plain woven texture"
+    },
+    "purpose": "basket for holding items",
+    "image_source": {
+        "url": "https://example.com/wicker-bowl"
+    },
+    "item_details": {
+        "shape": "Round",
+        "size": "Small",
+        "color": "Brown",
+        "texture": "Woven",
+        "purpose": "Decorative or Functional"
+    },
+    "product_info": {
+        "brand": "Natural Wicker",
+        "quality": "High",
+        "durability": "Medium",
+        "price_range": "$10-$25",
+        "style": "Rustic"
+    },
+    "recommendations": {},
+    "sku": "G6Y7NGPI",
+    "image_paths": [
+        "output/basket/basket_004.png",
+        "output/basket/basket_009.png",
+        "output/basket/basket_002.png"
+    ]
+}
