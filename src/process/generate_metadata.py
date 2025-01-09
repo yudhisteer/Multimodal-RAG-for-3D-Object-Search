@@ -6,6 +6,7 @@ from io import BytesIO
 import base64
 import json
 import ollama
+import string
 
 
 class MetadataGenerator:
@@ -75,7 +76,9 @@ class MetadataGenerator:
                 )
 
                 try:
-                    cleaned_response = self.clean_json_response(structure_response['message']['content'])
+                    cleaned_response = self.clean_json_response(
+                        structure_response["message"]["content"]
+                    )
                     metadata = json.loads(cleaned_response)
                     # Merge with existing metadata if not empty
                     if not combined_metadata:
@@ -110,23 +113,23 @@ class MetadataGenerator:
     def clean_json_response(self, response_text: str) -> str:
         """Clean response text to extract valid JSON."""
         # If response contains markdown JSON blocks
-        if '```json' in response_text:
+        if "```json" in response_text:
             # Extract content between ```json and ```
-            start = response_text.find('```json') + 7
-            end = response_text.find('```', start)
+            start = response_text.find("```json") + 7
+            end = response_text.find("```", start)
             response_text = response_text[start:end]
-        
+
         # Remove any leading/trailing whitespace
         response_text = response_text.strip()
-        
+
         # Ensure it starts with {
-        if not response_text.startswith('{'):
-            response_text = response_text[response_text.find('{'):]
-        
+        if not response_text.startswith("{"):
+            response_text = response_text[response_text.find("{") :]
+
         # Ensure it ends with }
-        if not response_text.endswith('}'):
-            response_text = response_text[:response_text.rfind('}') + 1]
-        
+        if not response_text.endswith("}"):
+            response_text = response_text[: response_text.rfind("}") + 1]
+
         return response_text
 
     def save_metadata(self, metadata: Dict, save_path: str) -> None:
@@ -137,13 +140,27 @@ class MetadataGenerator:
         except Exception as e:
             print(f"Error saving metadata: {str(e)}")
 
+    def generate_sku(self) -> str:
+        """Generate random 8-character SKU with letters and numbers."""
+        # Characters to choose from (letters and numbers)
+        characters = string.ascii_uppercase + string.digits
+        # Generate 8 random characters
+        sku = "".join(random.choice(characters) for _ in range(8))
+        return sku
+
     def process_product_folder(self, folder_path: str, output_path: str) -> Dict:
         try:
+            # Generate random SKU
+            product_sku = self.generate_sku()
+
             # Select random images
             selected_images = self.select_random_images(folder_path)
 
             # Generate metadata
             metadata = self.generate_metadata(selected_images)
+
+            # Add SKU to metadata
+            metadata["sku"] = product_sku
 
             # Add image paths to metadata
             metadata["image_paths"] = selected_images
@@ -164,13 +181,11 @@ if __name__ == "__main__":
     analysis_prompt = """Analyze this image and output ONLY valid JSON. Do not include any other text, markdown formatting, or explanations. Start directly with { and end with }."""
     structuring_prompt = """Based on the previous analysis, create a structured JSON metadata that organizes all these attributes effectively. Ensure the output is in valid JSON format."""
 
-    generator = MetadataGenerator(
-        prompt_template, analysis_prompt, structuring_prompt
-    )
+    generator = MetadataGenerator(prompt_template, analysis_prompt, structuring_prompt)
 
     # Process a product folder
-    folder_path = "output/water"
-    output_path = "metadata/water_metadata.json"
+    folder_path = "output/basket"
+    output_path = "metadata/basket_metadata.json"
 
     metadata = generator.process_product_folder(folder_path, output_path)
     print("Generated metadata:", json.dumps(metadata, indent=2))

@@ -73,10 +73,10 @@ class ImageEmbeddingGenerator:
 
 
 if __name__ == "__main__":
-    image_folder = "output/water"
-    save_path = "embeddings/water_embeddings.json"  # Full path where to save
+    image_folder = "output/basket"
+    save_path = "embeddings/basket_image_embeddings.json"
 
     generator = ImageEmbeddingGenerator()
-    # embeddings = generator.process_image_folder(image_folder)
-    # generator.save_embeddings(embeddings, save_path)
+    embeddings = generator.process_image_folder(image_folder)
+    generator.save_embeddings(embeddings, save_path)
     loaded_embeddings = generator.load_embeddings(save_path)
