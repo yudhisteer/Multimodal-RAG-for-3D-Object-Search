@@ -52,6 +52,10 @@ class ProductSearcher:
                 # Load metadata
                 with open(os.path.join(self.metadata_dir, metadata_file), "r") as f:
                     metadata = json.load(f)
+                    sku = metadata.get('sku')
+                    if not sku:
+                        print(f"No SKU found in metadata for {product_name}")
+                        continue
 
                 # Load image embeddings
                 image_emb_file = f"{product_name}_image_embeddings.json"
@@ -68,7 +72,7 @@ class ProductSearcher:
                     metadata_embedding = json.load(f)
 
                 # Store in products_data
-                products_data[product_name] = {
+                products_data[sku] = {
                     "metadata": metadata,
                     "metadata_embedding": np.array(metadata_embedding["embedding"]),
                     "visual_embeddings": {
@@ -201,10 +205,13 @@ if __name__ == "__main__":
     results = searcher.search(query, top_k=3)
 
     for idx, result in enumerate(results, 1):
+
+        product_name = result['metadata']['image_paths'][0].split('/')[1]
         print(f"\nMatch {idx}:")
+        print(f"Product: {product_name}")
         print(f"SKU: {result['sku']}")
         print(f"Scores:")
         print(f"  Visual Similarity: {result['scores']['visual_similarity']:.3f}")
         print(f"  Metadata Similarity: {result['scores']['metadata_similarity']:.3f}")
         print(f"  Combined Score: {result['scores']['combined_score']:.3f}")
-        print(f"Image Paths: {result['metadata']['image_paths']}")
+        print(f"Image Paths: {result['metadata']['image_paths']}\n")
